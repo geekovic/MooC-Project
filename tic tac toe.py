@@ -1,4 +1,3 @@
- #skeleton
 def display_board(board):
     print('\n'*100)
     print(board[7]+ '_|_' + board[8] + '_|_' + board[9])
@@ -7,8 +6,9 @@ def display_board(board):
 
  #input
 def player_input():
-    marker=''
-    while not (marker=='X' or marker=='O'):
+    marker=input('Pehle bande: X bnega yaan O ? ').upper()
+    while("X" not in marker and "O" not in marker):
+        print("Enter valid Choice!")
         marker=input('Pehle bande: X bnega yaan O ? ').upper()
     if marker=='X':
         return ('X','O')
@@ -55,6 +55,10 @@ def player_choice(board):
     position=0
     while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board, position):
         position=int(input('kidhr lgaun?: (1-9)'))
+        while((position < 1) or  (position > 9)):
+            print("Enter valid Choice!")
+            position=int(input('kidhr lgaun?: (1-9)'))
+
     return position
 
  #firse khelna?
@@ -77,6 +81,14 @@ while True:
     
     if play_game.lower()[0] == 'h':
         game_on = True
+    elif  play_game.lower()[0] != 'h':
+        while (play_game.lower()[0] != "n" and play_game.lower()[0] != "h"):
+            print("Enter Valid Choice")
+            play_game = input('Kya bolte? Khela shuru kren? Haan ya Na: ')
+        if play_game[0]=='n':
+            game_on=False
+        else:
+            game_on=True
     else:
         game_on = False
 
